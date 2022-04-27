@@ -1,3 +1,4 @@
+use std::sync::Mutex;
 /** Contains handler functions that respond to HTTP requests
 Health check handler using application state **/
 use actix_web::{web, HttpResponse};
@@ -91,4 +92,86 @@ mod tests {
         //Verify if the HTTP status response code (returned from the handler) indicates success
         assert_eq!(resp.status(), StatusCode::OK);
     }
+}
+//Handler function to get all courses for a tutor
+pub async fn get_courses_for_tutor(
+    app_state: web::Data<AppState>,
+    params: web::Path<(usize)>,
+) -> HttpResponse {
+    let tutor_id: usize = params.0;
+
+    let filtered_courses = app_state
+        .courses
+        .lock()
+        .unwrap()
+        .clone()
+        .into_iter()
+        // Filter for courses corresponding to tutor requested by web client
+        .filter(|course| course.tutor_id == tutor_id)
+        .collect::<Vec<Course>>();
+
+    if filtered_courses.len() > 0 {
+        //If courses are found for tutor, return success response with the course list
+        HttpResponse::Ok().json(filtered_courses)
+    } else {
+        //If courses are not found for tutor, send error message.
+        HttpResponse::Ok().json("No courses found for tutor".to_string())
+    }
+}
+//Test script for retrieving courses for a tutor
+#[actix_rt::test]
+async fn get_all_courses_success() {
+    //Construct app state
+    let app_state: web::Data<AppState> = web::Data::new(AppState {
+        health_check_response: "".to_string(),
+        visit_count: Mutex::new(0),
+        courses: Mutex::new(vec![]),
+    });
+    //Simulate request parameter
+    let tutor_id: web::Path<(usize)> = web::Path::from((1));
+    //Invoke the handler
+    let resp = get_courses_for_tutor(app_state, tutor_id).await;
+    //Check response
+    assert_eq!(resp.status(), StatusCode::OK);
+}
+
+//Handler function to retrieve details for a single course
+pub async fn get_course_detail(
+    app_state: web::Data<AppState>,
+    params: web::Path<(usize, usize)>,
+) -> HttpResponse {
+    let (tutor_id, course_id) = params.0;
+    let selected_course = app_state
+        .courses
+        .lock()
+        .unwrap()
+        .clone()
+        .into_iter()
+        //Retrieve course corresponding to the tutor_id and course_id sent as request parameters.
+        .find(|x| x.tutor_id == tutor_id && x.course_id == Some(course_id))
+        //Converts Option<T> to Result<T,E>. If Option<T> evaluates to Some(val), it returns Ok(val). If None found, it returns Err(err).
+        .ok_or("Course not found");
+
+    if let Ok(course) = selected_course {
+        HttpResponse::Ok().json(course)
+    } else {
+        HttpResponse::Ok().json("Course not found".to_string())
+    }
+}
+
+#[actix_rt::test]
+async fn get_one_course_success() {
+    //Construct app state
+    let app_state: web::Data<AppState> = web::Data::new(AppState {
+        health_check_response: "".to_string(),
+        visit_count: Mutex::new(0),
+        courses: Mutex::new(vec![]),
+    });
+    //Construct an object of type web::Path with two parameters.
+    // This is to simulate a user typing localhost:9000/1/1 in a web browser.
+    let params: web::Path<(usize, usize)> = web::Path::from((1, 1));
+    //Invoke the handler
+    let resp = get_course_detail(app_state, params).await;
+    //Check response
+    assert_eq!(resp.status(), StatusCode::OK);
 }
