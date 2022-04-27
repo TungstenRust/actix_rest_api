@@ -1,8 +1,7 @@
 /** Contains handler functions that respond to HTTP requests
 Health check handler using application state **/
-
-use super::state::AppState;
 use actix_web::{web, HttpResponse};
+use super::state::AppState;
 use super::models::Course;
 use chrono::Utc;
 /* Application state registered with the Actix web application is made available automatically
