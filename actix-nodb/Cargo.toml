@@ -7,10 +7,11 @@ default-run="tutor-service"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [[bin]]
 name = "basic-server"
-
 [[bin]]
 name = "tutor-service"
 
 [dependencies]
 actix-web = "4.0.1"
 actix-rt = "2.7.0"
+serde = { version = "1.0.136", features = ["derive"] }
+chrono = {version = "0.4.19", features = ["serde"]}
