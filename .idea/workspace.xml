@@ -8,23 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33980f71-3757-4a88-be62-c8f0a825b986" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/actix-rest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/actix-nodb/Cargo.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/actix-nodb/src/bin/basic-server.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/actix-nodb/src/bin/tutor-service.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/actix-nodb/src/handlers.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/actix-nodb/src/main.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/actix-nodb/src/models.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/actix-nodb/src/routes.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/actix-nodb/src/state.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actix-nodb/src/bin/tutor-service.rs" beforeDir="false" afterPath="$PROJECT_DIR$/actix-nodb/src/bin/tutor-service.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actix-nodb/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/actix-nodb/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actix-nodb/src/models.rs" beforeDir="false" afterPath="$PROJECT_DIR$/actix-nodb/src/models.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actix-nodb/src/state.rs" beforeDir="false" afterPath="$PROJECT_DIR$/actix-nodb/src/state.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,6 +86,7 @@
       <workItem from="1651034126263" duration="27000" />
       <workItem from="1651034291285" duration="1063000" />
       <workItem from="1651035814374" duration="412000" />
+      <workItem from="1651037283244" duration="2818000" />
     </task>
     <servers />
   </component>
