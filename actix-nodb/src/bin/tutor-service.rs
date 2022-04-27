@@ -9,7 +9,6 @@ mod handlers;
 mod routes;
 #[path = "../state.rs"]
 mod state;
-
 use routes::*;
 use state::AppState;
 
@@ -19,6 +18,8 @@ async fn main() -> io::Result<()> {
     let shared_data = web::Data::new(AppState {
         health_check_response: "I'm good. You've already asked me ".to_string(),
         visit_count: Mutex::new(0),
+        //courses field initialized with a Mutex-protected empty vector
+        courses: Mutex::new(vec![]),
     });
     // Define the web application
     let app = move || {
@@ -27,6 +28,8 @@ async fn main() -> io::Result<()> {
             // Configure routes for the web application
             .app_data(shared_data.clone())
             .configure(general_routes)
+            //Register the new course_routes group with application
+            .configure(course_routes)
     };
     // Initialize Actix web server with the web application, listen on port 9000 and run the server
     HttpServer::new(app).bind("127.0.0.1:9000")?.run().await
