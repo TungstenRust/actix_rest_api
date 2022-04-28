@@ -6,8 +6,11 @@ edition = "2021"
 default-run="tutor-service"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [[bin]]
+path = "actix-nodb/src/bin/basic-server.rs"
 name = "basic-server"
+
 [[bin]]
+path = "actix-nodb/src/bin/tutor-service.rs"
 name = "tutor-service"
 
 [dependencies]
